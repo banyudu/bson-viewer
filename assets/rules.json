@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "extensionPath": "/tabs/bson-viewer.html"
+      }
+    },
+    "condition": {
+      "urlFilter": "*.bson",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  }
+]
+

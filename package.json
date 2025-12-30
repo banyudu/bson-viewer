@@ -10,9 +10,12 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/messaging": "^0.7.2",
+    "bson": "^6.0.0",
     "plasmo": "0.90.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
@@ -20,6 +23,7 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "@types/react-syntax-highlighter": "^15.5.0",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "prettier": "3.2.4",
@@ -27,8 +31,26 @@
     "typescript": "5.3.3"
   },
   "manifest": {
+    "permissions": [
+      "declarativeNetRequest",
+      "declarativeNetRequestWithHostAccess",
+      "tabs",
+      "storage",
+      "downloads",
+      "webNavigation"
+    ],
     "host_permissions": [
-      "https://*/*"
-    ]
+      "https://*/*",
+      "http://*/*"
+    ],
+    "declarative_net_request": {
+      "rule_resources": [
+        {
+          "id": "bson_intercept",
+          "enabled": true,
+          "path": "~assets/rules.json"
+        }
+      ]
+    }
   }
 }

@@ -2,6 +2,13 @@
 module.exports = {
   mode: "jit",
   darkMode: "class",
-  content: ["./**/*.tsx"],
+  content: [
+    "./components/**/*.tsx",
+    "./components/**/*.ts",
+    "./tabs/**/*.tsx",
+    "./tabs/**/*.ts",
+    "./utils/**/*.tsx",
+    "./utils/**/*.ts",
+  ],
   plugins: []
 }
