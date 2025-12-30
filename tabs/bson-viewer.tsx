@@ -17,7 +17,7 @@ if (typeof window !== "undefined") {
   // This tells @monaco-editor/react to use the bundled monaco-editor instead of CDN
   loader.config({ monaco })
 
-  // Initialize Monaco environment for workers
+  // Initialize Monaco environment for workers (only JSON is supported)
   initMonacoEnvironment()
 }
 

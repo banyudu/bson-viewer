@@ -5,8 +5,10 @@
   "description": "View BSON file on the fly",
   "author": "Yudu Ban <banyudu@gmail.com>",
   "scripts": {
+    "clean": "rimraf build/chrome-mv3-prod dist",
     "dev": "plasmo dev",
-    "build": "plasmo build",
+    "build": "npm run clean && plasmo build && node scripts/cleanup-monaco.js",
+    "build:no-cleanup": "plasmo build",
     "package": "plasmo package"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "prettier": "3.2.4",
+    "rimraf": "^6.1.2",
     "tailwindcss": "^3.4.19",
     "typescript": "5.3.3"
   },
@@ -59,8 +62,13 @@
     },
     "web_accessible_resources": [
       {
-        "resources": ["*.worker.js", "*.worker.*.js"],
-        "matches": ["<all_urls>"]
+        "resources": [
+          "*.worker.js",
+          "*.worker.*.js"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
       }
     ]
   }
