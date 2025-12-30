@@ -10,7 +10,7 @@ interface BSONNodeProps {
 }
 
 export function BSONNode({ name, value, level = 0, expanded: controlledExpanded, onToggle }: BSONNodeProps) {
-  const [internalExpanded, setInternalExpanded] = useState(level < 2)
+  const [internalExpanded, setInternalExpanded] = useState(true)
   const isControlled = controlledExpanded !== undefined
   const expanded = isControlled ? controlledExpanded : internalExpanded
 
@@ -26,7 +26,7 @@ export function BSONNode({ name, value, level = 0, expanded: controlledExpanded,
   }
 
   const indentStyle = {
-    paddingLeft: `${level * 20}px`
+    paddingLeft: `${level * 6}px`
   }
 
   return (

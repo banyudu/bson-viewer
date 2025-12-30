@@ -19,7 +19,69 @@ export function parseBSON(data: Uint8Array | ArrayBuffer): any {
 }
 
 /**
- * Convert BSON value to display-friendly format
+ * Generate a JSON preview for objects and arrays (for collapsed display)
+ */
+function generateJSONPreview(value: any, maxItems: number = 3): string {
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      return "[]"
+    }
+    const preview = value.slice(0, maxItems).map(item => {
+      if (typeof item === "string") {
+        const escaped = item
+          .replace(/\\/g, "\\\\")
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, "\\n")
+          .replace(/\r/g, "\\r")
+          .replace(/\t/g, "\\t")
+        return `"${escaped}"`
+      }
+      if (typeof item === "object" && item !== null) {
+        return Array.isArray(item) ? "[...]" : "{...}"
+      }
+      return JSON.stringify(item)
+    })
+    const suffix = value.length > maxItems ? ", ..." : ""
+    return `[${preview.join(", ")}${suffix}]`
+  }
+
+  if (typeof value === "object" && value !== null) {
+    const keys = Object.keys(value)
+    if (keys.length === 0) {
+      return "{}"
+    }
+    const preview: string[] = []
+    for (let i = 0; i < Math.min(maxItems, keys.length); i++) {
+      const key = keys[i]
+      const val = value[key]
+      const keyStr = `"${key.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`
+      
+      let valStr: string
+      if (typeof val === "string") {
+        const escaped = val
+          .replace(/\\/g, "\\\\")
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, "\\n")
+          .replace(/\r/g, "\\r")
+          .replace(/\t/g, "\\t")
+        valStr = `"${escaped}"`
+      } else if (typeof val === "object" && val !== null) {
+        valStr = Array.isArray(val) ? "[...]" : "{...}"
+      } else {
+        valStr = JSON.stringify(val)
+      }
+      
+      preview.push(`${keyStr}: ${valStr}`)
+    }
+    const suffix = keys.length > maxItems ? ", ..." : ""
+    return `{${preview.join(", ")}${suffix}}`
+  }
+
+  return ""
+}
+
+/**
+ * Convert BSON value to display-friendly format with proper JSON formatting
  */
 export function formatBSONValue(value: any): BSONValue {
   if (value === null) {
@@ -72,25 +134,56 @@ export function formatBSONValue(value: any): BSONValue {
     return {
       type: "Array",
       value: value,
-      display: `[${value.length} items]`
+      display: generateJSONPreview(value)
     }
   }
 
   // Handle objects
   if (typeof value === "object") {
-    const keys = Object.keys(value)
     return {
       type: "Object",
       value: value,
-      display: `{${keys.length} ${keys.length === 1 ? "key" : "keys"}}`
+      display: generateJSONPreview(value)
     }
   }
 
-  // Handle primitives
+  // Handle primitives with proper JSON formatting
+  if (typeof value === "string") {
+    // Escape quotes and special characters for JSON display
+    const escaped = value
+      .replace(/\\/g, "\\\\")
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+      .replace(/\t/g, "\\t")
+    return {
+      type: "string",
+      value: value,
+      display: `"${escaped}"`
+    }
+  }
+
+  if (typeof value === "boolean") {
+    return {
+      type: "boolean",
+      value: value,
+      display: String(value)
+    }
+  }
+
+  if (typeof value === "number") {
+    return {
+      type: "number",
+      value: value,
+      display: String(value)
+    }
+  }
+
+  // Fallback for other types
   return {
     type: typeof value,
     value: value,
-    display: String(value)
+    display: JSON.stringify(value)
   }
 }
 

@@ -10,8 +10,10 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@plasmohq/messaging": "^0.7.2",
     "bson": "^6.0.0",
+    "monaco-editor": "^0.55.1",
     "plasmo": "0.90.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -51,6 +53,15 @@
           "path": "~assets/rules.json"
         }
       ]
-    }
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["*.worker.js", "*.worker.*.js"],
+        "matches": ["<all_urls>"]
+      }
+    ]
   }
 }

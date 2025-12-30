@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.monaco-container {
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.monaco-bson-viewer {
+  width: 100%;
+  height: 100%;
+}

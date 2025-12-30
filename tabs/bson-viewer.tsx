@@ -3,17 +3,95 @@ import { sendToBackground } from "@plasmohq/messaging"
 import { parseBSON } from "~/utils/bson-helpers"
 import { getCachedBSONData, cacheBSONData, getPendingBSONUrl } from "~/utils/storage"
 import { ErrorBoundary } from "~/components/ErrorBoundary"
-import { BSONTreeViewer } from "~/components/BSONTreeViewer"
-import { Toolbar } from "~/components/Toolbar"
-import { SearchBar } from "~/components/SearchBar"
+import { MonacoBSONViewer } from "~/components/MonacoBSONViewer"
+import { Toolbar, type Theme } from "~/components/Toolbar"
+import { loader } from "@monaco-editor/react"
+import * as monaco from "monaco-editor"
+import { initMonacoEnvironment } from "~/utils/monaco-workers"
 import "~/style.css"
+
+// Configure Monaco to use local files and set up workers
+// This must be done before any Monaco editor is created
+if (typeof window !== "undefined") {
+  // Configure loader to use local monaco-editor package (prevents CDN loading)
+  // This tells @monaco-editor/react to use the bundled monaco-editor instead of CDN
+  loader.config({ monaco })
+
+  // Initialize Monaco environment for workers
+  initMonacoEnvironment()
+}
 
 function BSONViewer() {
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [searchQuery, setSearchQuery] = useState("")
   const [originalUrl, setOriginalUrl] = useState<string | undefined>()
+  const [theme, setTheme] = useState<Theme>("vs")
+
+  // Configure Monaco Editor themes
+  useEffect(() => {
+    const configureThemes = async () => {
+      await loader.init()
+      const monaco = await import("monaco-editor")
+      
+      // GitHub Dark theme
+      monaco.editor.defineTheme("github-dark", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "6a737d", fontStyle: "italic" },
+          { token: "string", foreground: "032f62" },
+          { token: "number", foreground: "005cc5" },
+          { token: "keyword", foreground: "d73a49" },
+        ],
+        colors: {
+          "editor.background": "#0d1117",
+          "editor.foreground": "#c9d1d9",
+          "editor.lineHighlightBackground": "#161b22",
+          "editor.selectionBackground": "#264f78",
+        },
+      })
+
+      // Monokai theme
+      monaco.editor.defineTheme("monokai", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "75715e" },
+          { token: "string", foreground: "e6db74" },
+          { token: "number", foreground: "ae81ff" },
+          { token: "keyword", foreground: "f92672" },
+          { token: "operator", foreground: "f92672" },
+        ],
+        colors: {
+          "editor.background": "#272822",
+          "editor.foreground": "#f8f8f2",
+          "editor.lineHighlightBackground": "#3e3d32",
+          "editor.selectionBackground": "#49483e",
+        },
+      })
+
+      // Solarized Dark theme
+      monaco.editor.defineTheme("solarized-dark", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "586e75", fontStyle: "italic" },
+          { token: "string", foreground: "2aa198" },
+          { token: "number", foreground: "d33682" },
+          { token: "keyword", foreground: "859900" },
+        ],
+        colors: {
+          "editor.background": "#002b36",
+          "editor.foreground": "#839496",
+          "editor.lineHighlightBackground": "#073642",
+          "editor.selectionBackground": "#586e75",
+        },
+      })
+    }
+
+    configureThemes()
+  }, [])
 
   /**
    * Check if a URL points to a BSON file by examining the pathname
@@ -35,7 +113,7 @@ function BSONViewer() {
         setLoading(true)
         setError(null)
 
-        // Get URL from query parameters (set by background script)
+        // Get URL from query parameters (set by background script or persisted from previous load)
         const params = new URLSearchParams(window.location.search)
         let url = params.get("url")
 
@@ -45,6 +123,10 @@ function BSONViewer() {
           const pendingUrl = await getPendingBSONUrl()
           if (pendingUrl) {
             url = pendingUrl
+            // Immediately update URL in address bar to persist it
+            const viewerUrl = new URL(window.location.href)
+            viewerUrl.searchParams.set("url", url)
+            window.history.replaceState(null, "", viewerUrl.toString())
           }
         }
 
@@ -53,6 +135,10 @@ function BSONViewer() {
           const referrer = document.referrer
           if (referrer && isBSONUrl(referrer)) {
             url = referrer // Keep full URL including query params
+            // Immediately update URL in address bar to persist it
+            const viewerUrl = new URL(window.location.href)
+            viewerUrl.searchParams.set("url", url)
+            window.history.replaceState(null, "", viewerUrl.toString())
           }
         }
 
@@ -62,6 +148,10 @@ function BSONViewer() {
           if (storedUrl) {
             url = storedUrl
             sessionStorage.removeItem("bson_url")
+            // Immediately update URL in address bar to persist it
+            const viewerUrl = new URL(window.location.href)
+            viewerUrl.searchParams.set("url", url)
+            window.history.replaceState(null, "", viewerUrl.toString())
           }
         }
 
@@ -73,12 +163,14 @@ function BSONViewer() {
 
         setOriginalUrl(url)
 
-        // Update page title and URL hash to show original URL
+        // Update page title and URL to show original URL
         try {
           const urlObj = new URL(url)
           document.title = `BSON Viewer - ${urlObj.pathname.split("/").pop() || "BSON File"}`
-          // Update hash to show original URL (for display purposes)
-          window.history.replaceState(null, "", `#${encodeURIComponent(url)}`)
+          // Update URL to show original URL in query params using history.replaceState
+          const viewerUrl = new URL(window.location.href)
+          viewerUrl.searchParams.set("url", url)
+          window.history.replaceState(null, "", viewerUrl.toString())
         } catch {
           document.title = "BSON Viewer"
         }
@@ -182,14 +274,11 @@ function BSONViewer() {
   return (
     <div className="bson-viewer min-h-screen bg-white dark:bg-gray-900">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 shadow-sm">
-        <Toolbar data={data} originalUrl={originalUrl} />
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <SearchBar onSearch={setSearchQuery} placeholder="Search BSON data..." />
-        </div>
+        <Toolbar data={data} originalUrl={originalUrl} theme={theme} onThemeChange={setTheme} />
       </div>
-      <div className="p-4">
+      <div className="monaco-container">
         <ErrorBoundary>
-          <BSONTreeViewer data={data} searchQuery={searchQuery} />
+          <MonacoBSONViewer data={data} theme={theme} />
         </ErrorBoundary>
       </div>
     </div>
