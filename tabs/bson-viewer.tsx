@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { sendToBackground } from "@plasmohq/messaging"
 import { parseBSON } from "~/utils/bson-helpers"
-import { getCachedBSONData, cacheBSONData, getPendingBSONUrl } from "~/utils/storage"
+import { getCachedBSONData, cacheBSONData, getPendingBSONUrl, getTheme, saveTheme } from "~/utils/storage"
 import { ErrorBoundary } from "~/components/ErrorBoundary"
 import { MonacoBSONViewer } from "~/components/MonacoBSONViewer"
 import { Toolbar, type Theme } from "~/components/Toolbar"
@@ -27,6 +27,25 @@ function BSONViewer() {
   const [error, setError] = useState<string | null>(null)
   const [originalUrl, setOriginalUrl] = useState<string | undefined>()
   const [theme, setTheme] = useState<Theme>("vs")
+
+  // Load saved theme preference on mount
+  useEffect(() => {
+    const loadSavedTheme = async () => {
+      const savedTheme = await getTheme()
+      // Validate that the saved theme is a valid Theme type
+      const validThemes: Theme[] = ["vs", "vs-dark", "hc-black", "github-dark", "monokai", "solarized-dark"]
+      if (savedTheme && validThemes.includes(savedTheme as Theme)) {
+        setTheme(savedTheme as Theme)
+      }
+    }
+    loadSavedTheme()
+  }, [])
+
+  // Save theme preference when it changes
+  const handleThemeChange = async (newTheme: Theme) => {
+    setTheme(newTheme)
+    await saveTheme(newTheme)
+  }
 
   // Configure Monaco Editor themes
   useEffect(() => {
@@ -274,7 +293,7 @@ function BSONViewer() {
   return (
     <div className="bson-viewer min-h-screen bg-white dark:bg-gray-900">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 shadow-sm">
-        <Toolbar data={data} originalUrl={originalUrl} theme={theme} onThemeChange={setTheme} />
+        <Toolbar data={data} originalUrl={originalUrl} theme={theme} onThemeChange={handleThemeChange} />
       </div>
       <div className="monaco-container">
         <ErrorBoundary>

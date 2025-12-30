@@ -5,6 +5,7 @@
 const CACHE_PREFIX = "bson_cache_"
 const SETTINGS_KEY = "bson_viewer_settings"
 const PENDING_URL_KEY = "bson_pending_url"
+const THEME_KEY = "bson_viewer_theme"
 
 export interface ViewerSettings {
   autoIntercept: boolean
@@ -119,5 +120,22 @@ export async function getPendingBSONUrl(tabId?: number): Promise<string | null> 
   }
 
   return pending.url
+}
+
+/**
+ * Save Monaco editor theme preference
+ */
+export async function saveTheme(theme: string): Promise<void> {
+  await chrome.storage.local.set({
+    [THEME_KEY]: theme
+  })
+}
+
+/**
+ * Get saved Monaco editor theme preference
+ */
+export async function getTheme(): Promise<string | null> {
+  const result = await chrome.storage.local.get(THEME_KEY)
+  return result[THEME_KEY] || null
 }
 
