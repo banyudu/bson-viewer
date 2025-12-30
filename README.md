@@ -79,6 +79,17 @@ Settings include:
 
 For further guidance, [visit Plasmo Documentation](https://docs.plasmo.com/)
 
+## Privacy Policy
+
+This extension operates entirely locally on your device. All data is stored using Chrome's local storage and never transmitted to external servers.
+
+- **No data collection**: No analytics, tracking, or user identification
+- **Local storage only**: All settings and cache are stored locally
+- **No external transmission**: No data is sent to external servers
+- **Automatic cache expiration**: Cached data expires after 1 hour
+
+For complete details, see our [Privacy Policy](https://banyudu.github.io/bson-viewer/privacy-policy.html) or [PRIVACY.md](./PRIVACY.md).
+
 ## Making production build
 
 Run the following:
