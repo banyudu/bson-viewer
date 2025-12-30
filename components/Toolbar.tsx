@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { bsonToJSON } from "~/utils/bson-helpers"
+import { bsonToJSON, serializeBSON } from "~/utils/bson-helpers"
 
 export type Theme = "vs" | "vs-dark" | "hc-black" | "github-dark" | "monokai" | "solarized-dark"
 
@@ -8,8 +7,6 @@ interface ToolbarProps {
   originalUrl?: string
   theme?: Theme
   onThemeChange?: (theme: Theme) => void
-  onCopy?: () => void
-  onDownload?: () => void
 }
 
 const themes: { value: Theme; label: string }[] = [
@@ -21,53 +18,123 @@ const themes: { value: Theme; label: string }[] = [
   { value: "solarized-dark", label: "Solarized Dark" },
 ]
 
-export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onCopy, onDownload }: ToolbarProps) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      const json = bsonToJSON(data, true)
-      await navigator.clipboard.writeText(json)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-      onCopy?.()
-    } catch (error) {
-      console.error("Failed to copy:", error)
+/**
+ * Extract clean filename from URL, removing query parameters and special characters
+ */
+function getCleanFilename(url: string, extension: string): string {
+  try {
+    const urlObj = new URL(url)
+    // Get the pathname and extract the filename
+    const pathname = urlObj.pathname
+    const filename = pathname.split("/").pop() || `file.${extension}`
+    
+    // Remove any query parameters or special characters that might be in the filename
+    // Split by common separators like `_`, `?`, `&` and take the first part
+    const cleanName = filename.split("_")[0].split("?")[0].split("&")[0]
+    
+    // Ensure it ends with the correct extension
+    if (cleanName.toLowerCase().endsWith(`.${extension}`)) {
+      return cleanName
     }
+    // If it had a different extension, replace it
+    const nameWithoutExt = cleanName.replace(/\.[^/.]+$/, "")
+    return `${nameWithoutExt}.${extension}`
+  } catch {
+    // If URL parsing fails, try simple string manipulation
+    const filename = url.split("/").pop() || `file.${extension}`
+    const cleanName = filename.split("_")[0].split("?")[0].split("&")[0]
+    if (cleanName.toLowerCase().endsWith(`.${extension}`)) {
+      return cleanName
+    }
+    const nameWithoutExt = cleanName.replace(/\.[^/.]+$/, "")
+    return `${nameWithoutExt}.${extension}`
   }
+}
 
-  const handleDownload = () => {
+export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: ToolbarProps) {
+  const handleDownloadJSON = async () => {
     try {
       const json = bsonToJSON(data, true)
       const blob = new Blob([json], { type: "application/json" })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement("a")
-      a.href = url
-      a.download = originalUrl ? originalUrl.split("/").pop()?.replace(".bson", ".json") || "bson.json" : "bson.json"
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-      onDownload?.()
+      
+      // Convert blob to data URL for chrome.downloads.download
+      // Data URLs are more reliable than blob URLs with chrome.downloads API
+      const reader = new FileReader()
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+      })
+      
+      // Get clean filename, removing query parameters
+      const filename = originalUrl 
+        ? getCleanFilename(originalUrl, "json")
+        : "bson.json"
+      
+      // Use chrome.downloads.download API
+      await chrome.downloads.download({
+        url: dataUrl,
+        filename: filename,
+        saveAs: true
+      })
     } catch (error) {
-      console.error("Failed to download:", error)
+      console.error("Failed to download JSON:", error)
+      alert(`Failed to download JSON: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  const handleDownloadBSON = async () => {
+    try {
+      // Serialize the already-parsed BSON data back to binary format
+      const bsonBuffer = serializeBSON(data)
+      
+      // Create blob from the BSON binary data
+      const blob = new Blob([bsonBuffer], { type: "application/bson" })
+      
+      // Convert blob to data URL for chrome.downloads.download
+      // Data URLs are more reliable than blob URLs with chrome.downloads API
+      const reader = new FileReader()
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+      })
+      
+      // Get clean filename
+      const filename = originalUrl 
+        ? getCleanFilename(originalUrl, "bson")
+        : "bson.bson"
+      
+      // Use chrome.downloads.download API
+      await chrome.downloads.download({
+        url: dataUrl,
+        filename: filename,
+        saveAs: true
+      })
+      
+      console.log("BSON download completed successfully")
+    } catch (error) {
+      console.error("Failed to download BSON:", error)
+      alert(`Failed to download BSON: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
 
   return (
     <div className="toolbar flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <button
-        onClick={handleCopy}
-        className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-      >
-        {copied ? "✓ Copied" : "Copy JSON"}
-      </button>
-      <button
-        onClick={handleDownload}
+        onClick={handleDownloadJSON}
         className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
         Download JSON
       </button>
+      {originalUrl && (
+        <button
+          onClick={handleDownloadBSON}
+          className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          Download BSON
+        </button>
+      )}
       <div className="flex items-center gap-2 ml-auto">
         <label htmlFor="theme-select" className="text-sm font-medium text-gray-700 dark:text-gray-200">
           Theme:
@@ -85,17 +152,8 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onCopy
           ))}
         </select>
       </div>
-      {originalUrl && (
-        <a
-          href={originalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-3 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          View Original
-        </a>
-      )}
     </div>
   )
 }
+
 

@@ -12,6 +12,17 @@
       "urlFilter": "*.bson",
       "resourceTypes": ["main_frame", "sub_frame"]
     }
+  },
+  {
+    "id": 2,
+    "priority": 2,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "regexFilter": ".*[?&]bypass_bson_viewer=true.*",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
   }
 ]
 

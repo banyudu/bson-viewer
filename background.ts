@@ -1,6 +1,18 @@
 import { setPendingBSONUrl } from "~/utils/storage"
 
 /**
+ * Check if a URL should bypass the BSON viewer (has bypass_bson_viewer=true parameter)
+ */
+function shouldBypassViewer(url: string): boolean {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.searchParams.has("bypass_bson_viewer")
+  } catch {
+    return url.includes("bypass_bson_viewer=true")
+  }
+}
+
+/**
  * Check if a URL points to a BSON file by examining the pathname
  */
 function isBSONUrl(url: string): boolean {
@@ -20,6 +32,10 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId === 0 && details.url) {
     // Main frame navigation only
     const url = details.url
+    // Skip if URL has bypass parameter
+    if (shouldBypassViewer(url)) {
+      return
+    }
     if (isBSONUrl(url) && !url.includes("bson-viewer.html")) {
       // Store the URL for the viewer to retrieve
       // Use a global key since we can't reliably match by tabId during redirect
@@ -32,6 +48,11 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "loading" && tab.url) {
     const url = tab.url
+    
+    // Skip if URL has bypass parameter
+    if (shouldBypassViewer(url)) {
+      return
+    }
     
     // Check if navigating to a BSON file (check pathname, not full URL)
     if (isBSONUrl(url) && !url.includes("bson-viewer.html")) {
@@ -50,6 +71,17 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 chrome.downloads.onCreated.addListener((downloadItem) => {
   const url = downloadItem.url || ""
   const filename = downloadItem.filename || ""
+
+  // Skip if URL has bypass parameter
+  if (shouldBypassViewer(url)) {
+    return
+  }
+
+  // Skip data URLs - these are downloads initiated by our extension (from toolbar)
+  // Data URLs start with "data:" and are always local, not web resources
+  if (url.startsWith("data:")) {
+    return
+  }
 
   // Check if it's a BSON file
   if (

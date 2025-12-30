@@ -19,6 +19,17 @@ export function parseBSON(data: Uint8Array | ArrayBuffer): any {
 }
 
 /**
+ * Serialize JavaScript object back to BSON binary format
+ */
+export function serializeBSON(obj: any): Uint8Array {
+  try {
+    return BSON.serialize(obj)
+  } catch (error) {
+    throw new Error(`Failed to serialize BSON: ${error instanceof Error ? error.message : "Unknown error"}`)
+  }
+}
+
+/**
  * Generate a JSON preview for objects and arrays (for collapsed display)
  */
 function generateJSONPreview(value: any, maxItems: number = 3): string {
