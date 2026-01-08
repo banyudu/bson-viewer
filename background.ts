@@ -117,6 +117,10 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 // Handle download interception as alternative method
 chrome.downloads.onCreated.addListener((downloadItem) => {
+  if (downloadItem.state !== "in_progress") {
+    return
+  }
+
   const url = downloadItem.url || ""
   const filename = downloadItem.filename || ""
 
