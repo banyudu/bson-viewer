@@ -1,16 +1,12 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
-  console.log('handler.fetch-bson called with:', req.body)
   const { url } = req.body
 
   if (!url) {
-    console.error('handler.fetch-bson: No URL provided')
     res.send({ error: "URL is required" })
     return
   }
-
-  console.log('handler.fetch-bson: Fetching URL:', url)
 
   try {
     // Add bypass parameter to URL to prevent declarativeNetRequest from intercepting
@@ -33,7 +29,6 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     }
 
     const arrayBuffer = await response.arrayBuffer()
-    console.log('handler.fetch-bson: Fetched', arrayBuffer.byteLength, 'bytes')
     
     // Return the data as an array for transmission
     res.send({

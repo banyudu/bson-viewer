@@ -13,53 +13,101 @@ function shouldBypassViewer(url: string): boolean {
 }
 
 /**
+ * Check if a URL is our extension's viewer page
+ */
+function isViewerPage(url: string): boolean {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.protocol === "chrome-extension:" && urlObj.pathname.includes("bson-viewer.html")
+  } catch {
+    return url.includes("bson-viewer.html")
+  }
+}
+
+/**
+ * Check if a URL is a blob or data URL (should not be intercepted)
+ */
+function isBlobOrDataUrl(url: string): boolean {
+  return url.startsWith("blob:") || url.startsWith("data:")
+}
+
+/**
+ * Check if a URL is an extension URL (should not be intercepted)
+ */
+function isExtensionUrl(url: string): boolean {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.protocol === "chrome-extension:" || urlObj.protocol === "chrome:"
+  } catch {
+    return url.startsWith("chrome-extension:") || url.startsWith("chrome:")
+  }
+}
+
+/**
  * Check if a URL points to a BSON file by examining the pathname
  */
 function isBSONUrl(url: string): boolean {
+  // Skip blob/data URLs and extension URLs
+  if (isBlobOrDataUrl(url) || isExtensionUrl(url)) {
+    return false
+  }
+  
   try {
     const urlObj = new URL(url)
     const pathname = urlObj.pathname
     return pathname.toLowerCase().endsWith(".bson")
   } catch {
     // If URL parsing fails, fall back to simple string check
+    // But still skip blob/data/extension URLs
+    if (url.startsWith("blob:") || url.startsWith("data:") || url.startsWith("chrome-extension:") || url.startsWith("chrome:")) {
+      return false
+    }
     return url.toLowerCase().includes(".bson")
   }
 }
 
-// Use webNavigation to catch BSON URLs before declarativeNetRequest redirects
-// This is more reliable than tabs.onUpdated for catching the original URL
+// Use webNavigation to catch BSON URLs early (before tabs.onUpdated)
+// This ensures we catch the URL even if tabs.onUpdated fires with a different state
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId === 0 && details.url) {
     // Main frame navigation only
     const url = details.url
+    
+    // Skip viewer pages, blob/data URLs, and extension URLs
+    if (isViewerPage(url) || isBlobOrDataUrl(url) || isExtensionUrl(url)) {
+      return
+    }
+    
     // Skip if URL has bypass parameter
     if (shouldBypassViewer(url)) {
       return
     }
-    if (isBSONUrl(url) && !url.includes("bson-viewer.html")) {
-      // Store the URL for the viewer to retrieve
-      // Use a global key since we can't reliably match by tabId during redirect
-      await setPendingBSONUrl(url)
+    
+    if (isBSONUrl(url)) {
+      // Store the URL for the viewer to retrieve (fallback if tabs.onUpdated doesn't fire)
+      await setPendingBSONUrl(url, details.tabId)
     }
   }
 })
 
-// Handle navigation to BSON files (complement to declarativeNetRequest)
+// Handle navigation to BSON files - this is the primary interception method
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "loading" && tab.url) {
     const url = tab.url
+    
+    // Skip viewer pages, blob/data URLs, and extension URLs
+    if (isViewerPage(url) || isBlobOrDataUrl(url) || isExtensionUrl(url)) {
+      return
+    }
     
     // Skip if URL has bypass parameter
     if (shouldBypassViewer(url)) {
       return
     }
     
-    // Check if navigating to a BSON file (check pathname, not full URL)
-    if (isBSONUrl(url) && !url.includes("bson-viewer.html")) {
-      // Store the URL in case declarativeNetRequest redirects without query params
-      await setPendingBSONUrl(url)
-      
-      // Redirect to viewer with URL parameter (if tabs.onUpdated fires before declarativeNetRequest)
+    // Check if navigating to a BSON file
+    if (isBSONUrl(url)) {
+      // Redirect to viewer with URL parameter
       chrome.tabs.update(tabId, {
         url: chrome.runtime.getURL(`tabs/bson-viewer.html?url=${encodeURIComponent(url)}`)
       })
@@ -72,14 +120,13 @@ chrome.downloads.onCreated.addListener((downloadItem) => {
   const url = downloadItem.url || ""
   const filename = downloadItem.filename || ""
 
-  // Skip if URL has bypass parameter
-  if (shouldBypassViewer(url)) {
+  // Skip viewer pages, blob/data URLs, and extension URLs
+  if (isViewerPage(url) || isBlobOrDataUrl(url) || isExtensionUrl(url)) {
     return
   }
 
-  // Skip data URLs - these are downloads initiated by our extension (from toolbar)
-  // Data URLs start with "data:" and are always local, not web resources
-  if (url.startsWith("data:")) {
+  // Skip if URL has bypass parameter
+  if (shouldBypassViewer(url)) {
     return
   }
 
