@@ -37,6 +37,74 @@ function getFiles(dir, pattern) {
 }
 
 /**
+ * Replace CDN URLs in JavaScript files with empty string
+ * This removes remote code references that Chrome Web Store rejects
+ */
+function replaceCDNUrls() {
+  console.log("Replacing CDN URLs in build files...")
+  
+  // Pattern to match: vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
+  const vsPathPattern = /vs:\s*"https:\/\/cdn\.jsdelivr\.net\/npm\/monaco-editor@[\d.]+\/min\/vs"/g
+  // General CDN pattern for any other occurrences
+  const cdnPattern = /"https:\/\/cdn\.jsdelivr\.net\/npm\/monaco-editor@[\d.]+[^"]*"/g
+  let replacedFiles = 0
+  let totalReplacements = 0
+
+  function processFile(filePath) {
+    try {
+      let content = fs.readFileSync(filePath, "utf8")
+      const originalContent = content
+      
+      // Replace the specific vs path pattern first
+      const vsMatches = content.match(vsPathPattern)
+      if (vsMatches) {
+        content = content.replace(vsPathPattern, 'vs: ""')
+        totalReplacements += vsMatches.length
+      }
+      
+      // Replace any other CDN URL patterns
+      const cdnMatches = content.match(cdnPattern)
+      if (cdnMatches) {
+        content = content.replace(cdnPattern, '""')
+        totalReplacements += cdnMatches.length
+      }
+      
+      if (content !== originalContent) {
+        fs.writeFileSync(filePath, content, "utf8")
+        replacedFiles++
+        console.log(`  Replaced CDN URLs in: ${path.basename(filePath)}`)
+      }
+    } catch (error) {
+      // Skip files that can't be read or written
+    }
+  }
+
+  function processDirectory(dir) {
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true })
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name)
+        if (entry.isDirectory()) {
+          processDirectory(fullPath)
+        } else if (entry.isFile() && entry.name.endsWith(".js")) {
+          processFile(fullPath)
+        }
+      }
+    } catch (error) {
+      // Directory might not exist or be readable
+    }
+  }
+
+  processDirectory(BUILD_DIR)
+  
+  if (replacedFiles > 0) {
+    console.log(`  Replaced CDN URLs in ${replacedFiles} files (${totalReplacements} total replacements)`)
+  } else {
+    console.log("  No CDN URLs found to replace")
+  }
+}
+
+/**
  * Remove files matching patterns we don't need
  */
 function cleanupMonacoFiles() {
@@ -205,6 +273,10 @@ function cleanupMonacoFiles() {
 }
 
 try {
+  // First, replace CDN URLs in all JavaScript files
+  replaceCDNUrls()
+  
+  // Then, clean up unnecessary Monaco files
   cleanupMonacoFiles()
 } catch (error) {
   console.error("Error cleaning up Monaco files:", error)
