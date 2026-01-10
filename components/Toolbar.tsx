@@ -7,6 +7,7 @@ interface ToolbarProps {
   originalUrl?: string
   theme?: Theme
   onThemeChange?: (theme: Theme) => void
+  onFileUpload?: (file: File) => void
 }
 
 const themes: { value: Theme; label: string }[] = [
@@ -27,11 +28,11 @@ function getCleanFilename(url: string, extension: string): string {
     // Get the pathname and extract the filename
     const pathname = urlObj.pathname
     const filename = pathname.split("/").pop() || `file.${extension}`
-    
+
     // Remove any query parameters or special characters that might be in the filename
     // Split by common separators like `_`, `?`, `&` and take the first part
     const cleanName = filename.split("_")[0].split("?")[0].split("&")[0]
-    
+
     // Ensure it ends with the correct extension
     if (cleanName.toLowerCase().endsWith(`.${extension}`)) {
       return cleanName
@@ -51,12 +52,12 @@ function getCleanFilename(url: string, extension: string): string {
   }
 }
 
-export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: ToolbarProps) {
+export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFileUpload }: ToolbarProps) {
   const handleDownloadJSON = async () => {
     try {
       const json = bsonToJSON(data, true)
       const blob = new Blob([json], { type: "application/json" })
-      
+
       // Convert blob to data URL for chrome.downloads.download
       // Data URLs are more reliable than blob URLs with chrome.downloads API
       const reader = new FileReader()
@@ -65,12 +66,12 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: Tool
         reader.onerror = reject
         reader.readAsDataURL(blob)
       })
-      
+
       // Get clean filename, removing query parameters
-      const filename = originalUrl 
+      const filename = originalUrl
         ? getCleanFilename(originalUrl, "json")
         : "bson.json"
-      
+
       // Use chrome.downloads.download API
       await chrome.downloads.download({
         url: dataUrl,
@@ -87,10 +88,10 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: Tool
     try {
       // Serialize the already-parsed BSON data back to binary format
       const bsonBuffer = serializeBSON(data)
-      
+
       // Create blob from the BSON binary data
       const blob = new Blob([bsonBuffer], { type: "application/bson" })
-      
+
       // Convert blob to data URL for chrome.downloads.download
       // Data URLs are more reliable than blob URLs with chrome.downloads API
       const reader = new FileReader()
@@ -99,24 +100,51 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: Tool
         reader.onerror = reject
         reader.readAsDataURL(blob)
       })
-      
+
       // Get clean filename
-      const filename = originalUrl 
+      const filename = originalUrl
         ? getCleanFilename(originalUrl, "bson")
         : "bson.bson"
-      
+
       // Use chrome.downloads.download API
       await chrome.downloads.download({
         url: dataUrl,
         filename: filename,
         saveAs: true
       })
-      
+
       console.log("BSON download completed successfully")
     } catch (error) {
       console.error("Failed to download BSON:", error)
       alert(`Failed to download BSON: ${error instanceof Error ? error.message : String(error)}`)
     }
+  }
+
+  const handleUploadBSON = () => {
+    // Create a file input element
+    const input = document.createElement("input")
+    input.type = "file"
+    input.accept = ".bson"
+    input.style.display = "none"
+
+    // Set up change handler
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (file && onFileUpload) {
+        onFileUpload(file)
+      }
+      // Clean up
+      document.body.removeChild(input)
+    }
+
+    // Handle cancellation
+    input.oncancel = () => {
+      document.body.removeChild(input)
+    }
+
+    // Add to DOM and trigger click
+    document.body.appendChild(input)
+    input.click()
   }
 
   return (
@@ -135,6 +163,7 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: Tool
           Download BSON
         </button>
       )}
+
       <div className="flex items-center gap-2 ml-auto">
         <label htmlFor="theme-select" className="text-sm font-medium text-gray-700 dark:text-gray-200">
           Theme:
@@ -151,6 +180,12 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange }: Tool
             </option>
           ))}
         </select>
+        <button
+          onClick={handleUploadBSON}
+          className="px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
+        >
+          Upload BSON
+        </button>
       </div>
     </div>
   )

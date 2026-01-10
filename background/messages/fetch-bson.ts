@@ -8,6 +8,14 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     return
   }
 
+  // Chrome extensions cannot fetch file:// URLs due to security restrictions
+  if (url.startsWith("file://")) {
+    res.send({ 
+      error: "Cannot fetch file:// URLs. Please use the file selection UI in the viewer." 
+    })
+    return
+  }
+
   try {
     // Add bypass parameter to URL to prevent declarativeNetRequest from intercepting
     const bypassUrl = (() => {

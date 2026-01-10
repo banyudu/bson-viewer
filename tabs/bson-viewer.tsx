@@ -27,6 +27,8 @@ function BSONViewer() {
   const [error, setError] = useState<string | null>(null)
   const [originalUrl, setOriginalUrl] = useState<string | undefined>()
   const [theme, setTheme] = useState<Theme>("vs")
+  const [isFileUrl, setIsFileUrl] = useState(false)
+  const [filePath, setFilePath] = useState<string>("")
 
   // Load saved theme preference on mount
   useEffect(() => {
@@ -175,12 +177,26 @@ function BSONViewer() {
         }
 
         if (!url) {
-          setError("No BSON URL provided. Please navigate to a .bson file URL.")
+          // No URL provided - show file picker UI
           setLoading(false)
+          setIsFileUrl(true)
+          setFilePath("")
           return
         }
 
         setOriginalUrl(url)
+
+        // Check if it's a file:// URL
+        const isFile = checkIsFileUrl(url)
+        setIsFileUrl(isFile)
+
+        if (isFile) {
+          const path = getFilePathFromUrl(url)
+          setFilePath(path)
+          setLoading(false)
+          // Don't try to fetch file:// URLs, show file selection UI instead
+          return
+        }
 
         // Update page title and URL to show original URL
         try {
@@ -211,6 +227,97 @@ function BSONViewer() {
 
     loadBSON()
   }, [])
+
+  /**
+   * Check if a URL is a file:// URL
+   */
+  const checkIsFileUrl = (url: string): boolean => {
+    return url.startsWith("file://")
+  }
+
+  /**
+   * Extract file path from file:// URL
+   */
+  const getFilePathFromUrl = (url: string): string => {
+    try {
+      const urlObj = new URL(url)
+      return decodeURIComponent(urlObj.pathname)
+    } catch {
+      // Fallback: remove file:// prefix
+      return url.replace(/^file:\/\//, "")
+    }
+  }
+
+  /**
+   * Handle file selection for file:// URLs or manual uploads
+   */
+  const handleFileSelect = async (file: File) => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      // Read file as ArrayBuffer
+      const arrayBuffer = await file.arrayBuffer()
+      
+      // Parse BSON
+      const parsed = parseBSON(arrayBuffer)
+      setData(parsed)
+      
+      // Update page title
+      document.title = `BSON Viewer - ${file.name}`
+      
+      // Update originalUrl to reflect the new file
+      const cacheUrl = `file://${file.name}`
+      setOriginalUrl(cacheUrl)
+      
+      // Cache the parsed data (use the file name as the cache key)
+      await cacheBSONData(cacheUrl, parsed)
+      setLoading(false)
+      setIsFileUrl(false)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load BSON file")
+      setLoading(false)
+    }
+  }
+
+  /**
+   * Handle file input change
+   */
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      handleFileSelect(file)
+    }
+  }
+
+  /**
+   * Handle drag and drop
+   */
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    const file = e.dataTransfer.files[0]
+    if (file && file.name.toLowerCase().endsWith(".bson")) {
+      handleFileSelect(file)
+    } else if (file) {
+      setError("Please drop a .bson file")
+    }
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    // Add visual feedback when dragging over the page
+    if (e.dataTransfer.types.includes("Files")) {
+      e.dataTransfer.dropEffect = "copy"
+    }
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
 
   const fetchAndParseBSON = async (url: string) => {
     try {
@@ -249,6 +356,52 @@ function BSONViewer() {
     } catch (err) {
       throw err
     }
+  }
+
+  // Show file selection UI for file:// URLs or when no URL is provided
+  if (isFileUrl) {
+    const fileName = filePath ? filePath.split("/").pop() || "file.bson" : null
+    return (
+      <div 
+        className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900"
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+      >
+        <div className="text-center p-8 max-w-md">
+          <div className="text-blue-600 dark:text-blue-400 text-6xl mb-4">📁</div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Select BSON File</h2>
+          {filePath ? (
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              Chrome extensions cannot directly access local files. Please select the file to view:
+            </p>
+          ) : (
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              Drag and drop a BSON file anywhere on this page, or click the button below to select a file.
+            </p>
+          )}
+          {fileName && (
+            <p className="text-sm text-gray-500 dark:text-gray-500 mb-6 font-mono break-all">
+              {fileName}
+            </p>
+          )}
+          <div className="mb-6">
+            <label className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer text-md">
+              <input
+                type="file"
+                accept=".bson"
+                onChange={handleFileInputChange}
+                className="hidden"
+              />
+              Choose File
+            </label>
+          </div>
+          {error && (
+            <p className="text-red-600 dark:text-red-400 text-sm mt-4">{error}</p>
+          )}
+        </div>
+      </div>
+    )
   }
 
   if (loading) {
@@ -291,9 +444,20 @@ function BSONViewer() {
   }
 
   return (
-    <div className="bson-viewer min-h-screen bg-white dark:bg-gray-900">
+    <div 
+      className="bson-viewer min-h-screen bg-white dark:bg-gray-900"
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+    >
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 shadow-sm">
-        <Toolbar data={data} originalUrl={originalUrl} theme={theme} onThemeChange={handleThemeChange} />
+        <Toolbar 
+          data={data} 
+          originalUrl={originalUrl} 
+          theme={theme} 
+          onThemeChange={handleThemeChange}
+          onFileUpload={handleFileSelect}
+        />
       </div>
       <div className="monaco-container">
         <ErrorBoundary>
