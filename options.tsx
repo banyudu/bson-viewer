@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getSettings, saveSettings, type ViewerSettings } from "~/utils/storage"
+import { getMessage } from "~/utils/i18n"
 import "~/style.css"
 
 function Options() {
@@ -23,7 +24,7 @@ function Options() {
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading settings...</p>
+          <p className="text-gray-600 dark:text-gray-400">{getMessage("loadingSettings")}</p>
         </div>
       </div>
     )
@@ -32,7 +33,7 @@ function Options() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">BSON Viewer Settings</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">{getMessage("bsonViewerSettings")}</h1>
 
         <div className="space-y-6">
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
@@ -44,9 +45,9 @@ function Options() {
                 className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
               />
               <div>
-                <div className="font-semibold text-gray-900 dark:text-gray-100">Auto-intercept BSON files</div>
+                <div className="font-semibold text-gray-900 dark:text-gray-100">{getMessage("autoInterceptBSONFiles")}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                  Automatically open BSON files in the viewer instead of downloading them
+                  {getMessage("autoInterceptBSONFilesDescription")}
                 </div>
               </div>
             </label>
@@ -54,7 +55,7 @@ function Options() {
 
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
             <label className="block mb-2">
-              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">File Size Limit (MB)</div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{getMessage("fileSizeLimit")}</div>
               <input
                 type="number"
                 min="1"
@@ -64,28 +65,28 @@ function Options() {
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               />
               <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Files larger than this will show a warning
+                {getMessage("fileSizeLimitDescription")}
               </div>
             </label>
           </div>
 
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
             <label className="block mb-2">
-              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">Theme</div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{getMessage("themeSetting")}</div>
               <select
                 value={settings.theme}
                 onChange={(e) => setSettings({ ...settings, theme: e.target.value as "light" | "dark" })}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <option value="light">{getMessage("themeLight")}</option>
+                <option value="dark">{getMessage("themeDark")}</option>
               </select>
             </label>
           </div>
 
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
             <label className="block mb-2">
-              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">Default Expand Level</div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{getMessage("defaultExpandLevel")}</div>
               <input
                 type="number"
                 min="0"
@@ -95,7 +96,7 @@ function Options() {
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               />
               <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                How many levels to expand by default in the tree view
+                {getMessage("defaultExpandLevelDescription")}
               </div>
             </label>
           </div>
@@ -105,13 +106,13 @@ function Options() {
               onClick={handleSave}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
             >
-              {saved ? "✓ Saved" : "Save Settings"}
+              {saved ? getMessage("saved") : getMessage("saveSettings")}
             </button>
             <button
               onClick={() => window.location.reload()}
               className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium"
             >
-              Cancel
+              {getMessage("cancel")}
             </button>
           </div>
         </div>

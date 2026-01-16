@@ -1,4 +1,5 @@
 import React, { Component, type ErrorInfo, type ReactNode } from "react"
+import { getMessage } from "~/utils/i18n"
 
 interface Props {
   children: ReactNode
@@ -28,15 +29,15 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         this.props.fallback || (
           <div className="p-8 text-center">
-            <h2 className="text-xl font-bold text-red-600 dark:text-red-400 mb-2">Something went wrong</h2>
+            <h2 className="text-xl font-bold text-red-600 dark:text-red-400 mb-2">{getMessage("somethingWentWrong")}</h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              {this.state.error?.message || "An unexpected error occurred"}
+              {this.state.error?.message || getMessage("unexpectedErrorOccurred")}
             </p>
             <button
               onClick={() => this.setState({ hasError: false, error: undefined })}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             >
-              Try Again
+              {getMessage("tryAgain")}
             </button>
           </div>
         )

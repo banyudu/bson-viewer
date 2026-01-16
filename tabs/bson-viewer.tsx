@@ -8,6 +8,7 @@ import { Toolbar, type Theme } from "~/components/Toolbar"
 import { loader } from "@monaco-editor/react"
 import * as monaco from "monaco-editor"
 import { initMonacoEnvironment } from "~/utils/monaco-workers"
+import { getMessage } from "~/utils/i18n"
 import "~/style.css"
 
 // Configure Monaco to use local files and set up workers
@@ -201,13 +202,14 @@ function BSONViewer() {
         // Update page title and URL to show original URL
         try {
           const urlObj = new URL(url)
-          document.title = `BSON Viewer - ${urlObj.pathname.split("/").pop() || "BSON File"}`
+          const extensionName = getMessage("extensionName")
+          document.title = `${extensionName} - ${urlObj.pathname.split("/").pop() || "BSON File"}`
           // Update URL to show original URL in query params using history.replaceState
           const viewerUrl = new URL(window.location.href)
           viewerUrl.searchParams.set("url", url)
           window.history.replaceState(null, "", viewerUrl.toString())
         } catch {
-          document.title = "BSON Viewer"
+          document.title = getMessage("extensionName")
         }
 
         // Check cache first
@@ -264,7 +266,8 @@ function BSONViewer() {
       setData(parsed)
       
       // Update page title
-      document.title = `BSON Viewer - ${file.name}`
+      const extensionName = getMessage("extensionName")
+      document.title = `${extensionName} - ${file.name}`
       
       // Update originalUrl to reflect the new file
       const cacheUrl = `file://${file.name}`
@@ -275,7 +278,7 @@ function BSONViewer() {
       setLoading(false)
       setIsFileUrl(false)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load BSON file")
+      setError(err instanceof Error ? err.message : getMessage("failedToLoadBSONFile"))
       setLoading(false)
     }
   }
@@ -301,7 +304,7 @@ function BSONViewer() {
     if (file && file.name.toLowerCase().endsWith(".bson")) {
       handleFileSelect(file)
     } else if (file) {
-      setError("Please drop a .bson file")
+      setError(getMessage("pleaseDropBSONFile"))
     }
   }
 
@@ -370,14 +373,14 @@ function BSONViewer() {
       >
         <div className="text-center p-8 max-w-md">
           <div className="text-blue-600 dark:text-blue-400 text-6xl mb-4">📁</div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Select BSON File</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{getMessage("selectBSONFile")}</h2>
           {filePath ? (
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Chrome extensions cannot directly access local files. Please select the file to view:
+              {getMessage("chromeExtensionsCannotAccessLocalFiles")}
             </p>
           ) : (
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Drag and drop a BSON file anywhere on this page, or click the button below to select a file.
+              {getMessage("dragAndDropBSONFile")}
             </p>
           )}
           {fileName && (
@@ -393,7 +396,7 @@ function BSONViewer() {
                 onChange={handleFileInputChange}
                 className="hidden"
               />
-              Choose File
+              {getMessage("chooseFile")}
             </label>
           </div>
           {error && (
@@ -409,7 +412,7 @@ function BSONViewer() {
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400 mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading BSON file...</p>
+          <p className="text-gray-600 dark:text-gray-400">{getMessage("loadingBSONFile")}</p>
         </div>
       </div>
     )
@@ -420,13 +423,13 @@ function BSONViewer() {
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
         <div className="text-center p-8">
           <div className="text-red-600 dark:text-red-400 text-6xl mb-4">⚠️</div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Error Loading BSON</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{getMessage("errorLoadingBSON")}</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
-            Retry
+            {getMessage("retry")}
           </button>
         </div>
       </div>
@@ -437,7 +440,7 @@ function BSONViewer() {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
         <div className="text-center">
-          <p className="text-gray-600 dark:text-gray-400">No data to display</p>
+          <p className="text-gray-600 dark:text-gray-400">{getMessage("noDataToDisplay")}</p>
         </div>
       </div>
     )

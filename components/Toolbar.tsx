@@ -1,4 +1,5 @@
 import { bsonToJSON, serializeBSON } from "~/utils/bson-helpers"
+import { getMessage } from "~/utils/i18n"
 
 export type Theme = "vs" | "vs-dark" | "hc-black" | "github-dark" | "monokai" | "solarized-dark"
 
@@ -10,13 +11,13 @@ interface ToolbarProps {
   onFileUpload?: (file: File) => void
 }
 
-const themes: { value: Theme; label: string }[] = [
-  { value: "vs", label: "Light" },
-  { value: "vs-dark", label: "Dark" },
-  { value: "hc-black", label: "High Contrast" },
-  { value: "github-dark", label: "GitHub Dark" },
-  { value: "monokai", label: "Monokai" },
-  { value: "solarized-dark", label: "Solarized Dark" },
+const getThemes = (): { value: Theme; label: string }[] => [
+  { value: "vs", label: getMessage("themeLight") },
+  { value: "vs-dark", label: getMessage("themeDark") },
+  { value: "hc-black", label: getMessage("themeHighContrast") },
+  { value: "github-dark", label: getMessage("themeGitHubDark") },
+  { value: "monokai", label: getMessage("themeMonokai") },
+  { value: "solarized-dark", label: getMessage("themeSolarizedDark") },
 ]
 
 /**
@@ -80,7 +81,8 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFile
       })
     } catch (error) {
       console.error("Failed to download JSON:", error)
-      alert(`Failed to download JSON: ${error instanceof Error ? error.message : String(error)}`)
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      alert(getMessage("failedToDownloadJSON", errorMessage))
     }
   }
 
@@ -116,7 +118,8 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFile
       console.log("BSON download completed successfully")
     } catch (error) {
       console.error("Failed to download BSON:", error)
-      alert(`Failed to download BSON: ${error instanceof Error ? error.message : String(error)}`)
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      alert(getMessage("failedToDownloadBSON", errorMessage))
     }
   }
 
@@ -153,20 +156,20 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFile
         onClick={handleDownloadJSON}
         className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
-        Download JSON
+        {getMessage("downloadJSON")}
       </button>
       {originalUrl && (
         <button
           onClick={handleDownloadBSON}
           className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
         >
-          Download BSON
+          {getMessage("downloadBSON")}
         </button>
       )}
 
       <div className="flex items-center gap-2 ml-auto">
         <label htmlFor="theme-select" className="text-sm font-medium text-gray-700 dark:text-gray-200">
-          Theme:
+          {getMessage("theme")}
         </label>
         <select
           id="theme-select"
@@ -174,7 +177,7 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFile
           onChange={(e) => onThemeChange?.(e.target.value as Theme)}
           className="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
         >
-          {themes.map((t) => (
+          {getThemes().map((t) => (
             <option key={t.value} value={t.value}>
               {t.label}
             </option>
@@ -184,7 +187,7 @@ export function Toolbar({ data, originalUrl, theme = "vs", onThemeChange, onFile
           onClick={handleUploadBSON}
           className="px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
         >
-          Upload BSON
+          {getMessage("uploadBSON")}
         </button>
       </div>
     </div>
