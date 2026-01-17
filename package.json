@@ -5,7 +5,7 @@
   "description": "View BSON file on the fly",
   "author": "Yudu Ban <banyudu@gmail.com>",
   "scripts": {
-    "clean": "rimraf build/chrome-mv3-prod dist",
+    "clean": "rimraf build dist",
     "dev": "plasmo dev",
     "build": "npm run clean && plasmo build && node scripts/cleanup-monaco.js",
     "build:no-cleanup": "plasmo build",
