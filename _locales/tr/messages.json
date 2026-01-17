@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON Görüntüleyici",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "BSON dosyalarını anında görüntüle",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "JSON İndir",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "BSON İndir",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "BSON Yükle",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Tema:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Açık",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Koyu",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Yüksek Kontrast",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Koyu",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Koyu",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "BSON Dosyası Seç",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome uzantıları yerel dosyalara doğrudan erişemez. Lütfen görüntülenecek dosyayı seçin:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Bir BSON dosyasını bu sayfanın herhangi bir yerine sürükleyip bırakın veya dosya seçmek için aşağıdaki düğmeye tıklayın.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Dosya Seç",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "BSON dosyası yükleniyor...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "BSON Yükleme Hatası",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Yeniden Dene",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Gösterilecek veri yok",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "JSON indirme başarısız: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Ağ hatası"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "BSON indirme başarısız: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Ağ hatası"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "BSON dosyası yüklenemedi",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Lütfen bir .bson dosyası bırakın",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Ara...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Aramayı temizle",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON Görüntüleyici Ayarları",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Ayarlar yükleniyor...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "BSON dosyalarını otomatik olarak yakala",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "BSON dosyalarını indirmek yerine görüntüleyicide otomatik olarak aç",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Dosya Boyutu Limiti (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Bundan daha büyük dosyalar bir uyarı gösterecek",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Tema",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Varsayılan Genişletme Seviyesi",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Ağaç görünümünde varsayılan olarak kaç seviye genişletilecek",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Ayarları Kaydet",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Kaydedildi",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "İptal",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Bir şeyler yanlış gitti",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Beklenmeyen bir hata oluştu",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Tekrar Dene",
+    "description": "Button label to try again"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON ビューア",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "BSON ファイルをすぐに表示",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "JSON をダウンロード",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "BSON をダウンロード",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "BSON をアップロード",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "テーマ：",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "ライト",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "ダーク",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "高コントラスト",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub ダーク",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized ダーク",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "BSON ファイルを選択",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome 拡張機能はローカルファイルに直接アクセスできません。表示するファイルを選択してください：",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "BSON ファイルをこのページの任意の場所にドラッグ＆ドロップするか、下のボタンをクリックしてファイルを選択してください。",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "ファイルを選択",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "BSON ファイルを読み込み中...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "BSON の読み込みエラー",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "再試行",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "表示するデータがありません",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "JSON のダウンロードに失敗しました：$MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "ネットワークエラー"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "BSON のダウンロードに失敗しました：$MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "ネットワークエラー"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "BSON ファイルの読み込みに失敗しました",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": ".bson ファイルをドロップしてください",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "検索...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "検索をクリア",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON ビューアの設定",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "設定を読み込み中...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "BSON ファイルを自動的にインターセプト",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "BSON ファイルをダウンロードする代わりに、ビューアで自動的に開く",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "ファイルサイズ制限 (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "これより大きいファイルは警告を表示します",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "テーマ",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "デフォルトの展開レベル",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "ツリービューでデフォルトで展開するレベル数",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "設定を保存",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ 保存済み",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "問題が発生しました",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "予期しないエラーが発生しました",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "再試行",
+    "description": "Button label to try again"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON 查看器",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "即时查看 BSON 文件",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "下载 JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "下载 BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "上传 BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "主题：",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "浅色",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "深色",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "高对比度",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub 深色",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized 深色",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "选择 BSON 文件",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome 扩展无法直接访问本地文件。请选择要查看的文件：",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "将 BSON 文件拖放到此页面的任意位置，或点击下方按钮选择文件。",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "选择文件",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "正在加载 BSON 文件...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "加载 BSON 时出错",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "重试",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "没有可显示的数据",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "下载 JSON 失败：$MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "网络错误"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "下载 BSON 失败：$MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "网络错误"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "加载 BSON 文件失败",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "请拖放 .bson 文件",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "搜索...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "清除搜索",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON 查看器设置",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "正在加载设置...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "自动拦截 BSON 文件",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "自动在查看器中打开 BSON 文件，而不是下载它们",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "文件大小限制 (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "大于此大小的文件将显示警告",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "主题",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "默认展开级别",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "树形视图中默认展开的级别数",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "保存设置",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ 已保存",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "出了点问题",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "发生了意外错误",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "重试",
+    "description": "Button label to try again"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Просмотрщик BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Просматривать файлы BSON на лету",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Скачать JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Скачать BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Загрузить BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Тема:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Светлая",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Тёмная",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Высокий контраст",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Тёмная",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Тёмная",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Выбрать файл BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Расширения Chrome не могут напрямую обращаться к локальным файлам. Пожалуйста, выберите файл для просмотра:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Перетащите файл BSON в любое место на этой странице или нажмите кнопку ниже, чтобы выбрать файл.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Выбрать файл",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Загрузка файла BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Ошибка загрузки BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Повторить",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Нет данных для отображения",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Ошибка скачивания JSON: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Ошибка сети"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Ошибка скачивания BSON: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Ошибка сети"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Ошибка загрузки файла BSON",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Пожалуйста, перетащите файл .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Поиск...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Очистить поиск",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Настройки просмотрщика BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Загрузка настроек...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Автоматически перехватывать файлы BSON",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Автоматически открывать файлы BSON в просмотрщике вместо их скачивания",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Лимит размера файла (МБ)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Файлы больше этого размера покажут предупреждение",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Тема",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Уровень развёртывания по умолчанию",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Сколько уровней разворачивать по умолчанию в древовидном представлении",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Сохранить настройки",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Сохранено",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Что-то пошло не так",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Произошла неожиданная ошибка",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Попробовать снова",
+    "description": "Button label to try again"
+  }
+}

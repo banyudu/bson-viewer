@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "عارض BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "عرض ملفات BSON على الفور",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "تنزيل JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "تنزيل BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "رفع BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "المظهر:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "فاتح",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "داكن",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "تباين عالي",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub داكن",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized داكن",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "اختر ملف BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "لا يمكن لامتدادات Chrome الوصول مباشرة إلى الملفات المحلية. يرجى اختيار الملف للعرض:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "اسحب وأفلت ملف BSON في أي مكان على هذه الصفحة، أو انقر على الزر أدناه لاختيار ملف.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "اختر ملف",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "جارٍ تحميل ملف BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "خطأ في تحميل BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "إعادة المحاولة",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "لا توجد بيانات للعرض",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "فشل تنزيل JSON: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "فشل تنزيل BSON: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "فشل تحميل ملف BSON",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "يرجى إسقاط ملف .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "بحث...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "مسح البحث",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "إعدادات عارض BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "جارٍ تحميل الإعدادات...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "اعتراض ملفات BSON تلقائياً",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "فتح ملفات BSON تلقائياً في العارض بدلاً من تنزيلها",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "حد حجم الملف (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "الملفات الأكبر من هذا ستعرض تحذيراً",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "المظهر",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "مستوى التوسيع الافتراضي",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "كم عدد المستويات للتوسيع افتراضياً في عرض الشجرة",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "حفظ الإعدادات",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ تم الحفظ",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "إلغاء",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "حدث خطأ ما",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "حدث خطأ غير متوقع",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "حاول مرة أخرى",
+    "description": "Button label to try again"
+  }
+}

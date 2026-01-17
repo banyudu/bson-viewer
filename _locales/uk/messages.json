@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Переглядач BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Переглядати файли BSON на льоту",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Завантажити JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Завантажити BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Завантажити BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Тема:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Світла",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Темна",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Високий контраст",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Темна",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Темна",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Вибрати файл BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Розширення Chrome не можуть безпосередньо отримувати доступ до локальних файлів. Будь ласка, виберіть файл для перегляду:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Перетягніть файл BSON в будь-яке місце на цій сторінці або натисніть кнопку нижче, щоб вибрати файл.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Вибрати файл",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Завантаження файлу BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Помилка завантаження BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Повторити",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Немає даних для відображення",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Помилка завантаження JSON: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Помилка мережі"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Помилка завантаження BSON: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Помилка мережі"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Помилка завантаження файлу BSON",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Будь ласка, перетягніть файл .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Пошук...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Очистити пошук",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Налаштування переглядача BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Завантаження налаштувань...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Автоматично перехоплювати файли BSON",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Автоматично відкривати файли BSON у переглядачі замість їх завантаження",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Обмеження розміру файлу (МБ)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Файли більші за це покажуть попередження",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Тема",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Рівень розгортання за замовчуванням",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Скільки рівнів розгортати за замовчуванням у деревовидному поданні",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Зберегти налаштування",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Збережено",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Скасувати",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Щось пішло не так",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Сталася неочікувана помилка",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Спробувати знову",
+    "description": "Button label to try again"
+  }
+}

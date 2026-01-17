@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Trình xem BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Xem tệp BSON ngay lập tức",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Tải xuống JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Tải xuống BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Tải lên BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Giao diện:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Sáng",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Tối",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Độ tương phản cao",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Tối",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Tối",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Chọn tệp BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Tiện ích mở rộng Chrome không thể truy cập trực tiếp vào tệp cục bộ. Vui lòng chọn tệp để xem:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Kéo và thả tệp BSON vào bất kỳ đâu trên trang này, hoặc nhấp vào nút bên dưới để chọn tệp.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Chọn tệp",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Đang tải tệp BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Lỗi tải BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Thử lại",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Không có dữ liệu để hiển thị",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Tải xuống JSON thất bại: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Lỗi mạng"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Tải xuống BSON thất bại: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Lỗi mạng"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Tải tệp BSON thất bại",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Vui lòng thả tệp .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Tìm kiếm...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Xóa tìm kiếm",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Cài đặt Trình xem BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Đang tải cài đặt...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Tự động chặn tệp BSON",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Tự động mở tệp BSON trong trình xem thay vì tải xuống chúng",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Giới hạn kích thước tệp (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Các tệp lớn hơn mức này sẽ hiển thị cảnh báo",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Giao diện",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Mức mở rộng mặc định",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Số cấp độ mở rộng mặc định trong chế độ xem dạng cây",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Lưu cài đặt",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Đã lưu",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Hủy",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Đã xảy ra lỗi",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Đã xảy ra lỗi không mong muốn",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Thử lại",
+    "description": "Button label to try again"
+  }
+}

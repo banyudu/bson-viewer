@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON व्यूअर",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "BSON फ़ाइल को तुरंत देखें",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "JSON डाउनलोड करें",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "BSON डाउनलोड करें",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "BSON अपलोड करें",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "थीम:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "हल्का",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "गहरा",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "उच्च कंट्रास्ट",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub गहरा",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized गहरा",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "BSON फ़ाइल चुनें",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome एक्सटेंशन सीधे स्थानीय फ़ाइलों तक नहीं पहुंच सकते। कृपया देखने के लिए फ़ाइल चुनें:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "इस पृष्ठ पर कहीं भी BSON फ़ाइल खींचें और छोड़ें, या फ़ाइल चुनने के लिए नीचे दिए गए बटन पर क्लिक करें।",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "फ़ाइल चुनें",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "BSON फ़ाइल लोड हो रही है...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "BSON लोड करने में त्रुटि",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "पुनः प्रयास करें",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "दिखाने के लिए कोई डेटा नहीं",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "JSON डाउनलोड करने में विफल: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "नेटवर्क त्रुटि"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "BSON डाउनलोड करने में विफल: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "नेटवर्क त्रुटि"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "BSON फ़ाइल लोड करने में विफल",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "कृपया .bson फ़ाइल ड्रॉप करें",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "खोजें...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "खोज साफ़ करें",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON व्यूअर सेटिंग्स",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "सेटिंग्स लोड हो रही हैं...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "BSON फ़ाइलों को स्वचालित रूप से इंटरसेप्ट करें",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "BSON फ़ाइलों को डाउनलोड करने के बजाय व्यूअर में स्वचालित रूप से खोलें",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "फ़ाइल आकार सीमा (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "इससे बड़ी फ़ाइलें एक चेतावनी दिखाएंगी",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "थीम",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "डिफ़ॉल्ट विस्तार स्तर",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "ट्री व्यू में डिफ़ॉल्ट रूप से कितने स्तर विस्तारित करें",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "सेटिंग्स सहेजें",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ सहेजा गया",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "रद्द करें",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "कुछ गलत हो गया",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "एक अप्रत्याशित त्रुटि हुई",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "फिर से कोशिश करें",
+    "description": "Button label to try again"
+  }
+}

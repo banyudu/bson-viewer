@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON Viewer",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "BSON-bestanden direct bekijken",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "JSON downloaden",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "BSON downloaden",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "BSON uploaden",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Thema:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Licht",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Donker",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Hoog contrast",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Donker",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Donker",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "BSON-bestand selecteren",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome-extensies kunnen niet direct toegang krijgen tot lokale bestanden. Selecteer het bestand om te bekijken:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Sleep een BSON-bestand ergens op deze pagina of klik op de knop hieronder om een bestand te selecteren.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Bestand kiezen",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "BSON-bestand laden...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Fout bij laden BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Opnieuw proberen",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Geen gegevens om weer te geven",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "JSON downloaden mislukt: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Netwerkfout"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "BSON downloaden mislukt: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Netwerkfout"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "BSON-bestand laden mislukt",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Sleep een .bson-bestand",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Zoeken...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Zoekopdracht wissen",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON Viewer-instellingen",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Instellingen laden...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "BSON-bestanden automatisch onderscheppen",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "BSON-bestanden automatisch openen in de viewer in plaats van ze te downloaden",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Bestandsgrootte limiet (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Grotere bestanden tonen een waarschuwing",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Thema",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Standaard uitvouwniveau",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Hoeveel niveaus standaard uitvouwen in de boomweergave",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Instellingen opslaan",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Opgeslagen",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Annuleren",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Er is iets misgegaan",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Er is een onverwachte fout opgetreden",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Opnieuw proberen",
+    "description": "Button label to try again"
+  }
+}

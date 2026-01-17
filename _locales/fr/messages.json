@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Visualiseur BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Visualiser les fichiers BSON à la volée",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Télécharger JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Télécharger BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Téléverser BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Thème :",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Clair",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Sombre",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Contraste élevé",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Sombre",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Sombre",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Sélectionner un fichier BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Les extensions Chrome ne peuvent pas accéder directement aux fichiers locaux. Veuillez sélectionner le fichier à visualiser :",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Glissez-déposez un fichier BSON n'importe où sur cette page, ou cliquez sur le bouton ci-dessous pour sélectionner un fichier.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Choisir un fichier",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Chargement du fichier BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Erreur lors du chargement BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Réessayer",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Aucune donnée à afficher",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Échec du téléchargement JSON : $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Erreur réseau"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Échec du téléchargement BSON : $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Erreur réseau"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Échec du chargement du fichier BSON",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Veuillez déposer un fichier .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Rechercher...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Effacer la recherche",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Paramètres du visualiseur BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Chargement des paramètres...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Intercepter automatiquement les fichiers BSON",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Ouvrir automatiquement les fichiers BSON dans le visualiseur au lieu de les télécharger",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Limite de taille de fichier (Mo)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "Les fichiers plus volumineux que cela afficheront un avertissement",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Thème",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Niveau d'expansion par défaut",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Nombre de niveaux à développer par défaut dans la vue arborescente",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Enregistrer les paramètres",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Enregistré",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Annuler",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Quelque chose s'est mal passé",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Une erreur inattendue s'est produite",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Réessayer",
+    "description": "Button label to try again"
+  }
+}

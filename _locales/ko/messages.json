@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "BSON 뷰어",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "BSON 파일을 즉시 보기",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "JSON 다운로드",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "BSON 다운로드",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "BSON 업로드",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "테마:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "라이트",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "다크",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "고대비",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub 다크",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized 다크",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "BSON 파일 선택",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Chrome 확장 프로그램은 로컬 파일에 직접 액세스할 수 없습니다. 볼 파일을 선택하세요:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "BSON 파일을 이 페이지의 아무 곳에나 끌어다 놓거나 아래 버튼을 클릭하여 파일을 선택하세요.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "파일 선택",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "BSON 파일 로드 중...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "BSON 로드 오류",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "다시 시도",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "표시할 데이터가 없습니다",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "JSON 다운로드 실패: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "네트워크 오류"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "BSON 다운로드 실패: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "네트워크 오류"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "BSON 파일 로드 실패",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": ".bson 파일을 드롭하세요",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "검색...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "검색 지우기",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "BSON 뷰어 설정",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "설정 로드 중...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "BSON 파일 자동 가로채기",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "BSON 파일을 다운로드하는 대신 뷰어에서 자동으로 열기",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "파일 크기 제한 (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "이보다 큰 파일은 경고를 표시합니다",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "테마",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "기본 확장 수준",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "트리 뷰에서 기본적으로 확장할 수준 수",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "설정 저장",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ 저장됨",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "취소",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "문제가 발생했습니다",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "예기치 않은 오류가 발생했습니다",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "다시 시도",
+    "description": "Button label to try again"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Penampil BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Tampilkan file BSON secara langsung",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Unduh JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Unduh BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Unggah BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Tema:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Terang",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Gelap",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Kontras Tinggi",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Gelap",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Gelap",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Pilih File BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Ekstensi Chrome tidak dapat mengakses file lokal secara langsung. Silakan pilih file untuk dilihat:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Seret dan lepas file BSON di mana saja di halaman ini, atau klik tombol di bawah untuk memilih file.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Pilih File",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Memuat file BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Kesalahan Memuat BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Coba Lagi",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Tidak ada data untuk ditampilkan",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Gagal mengunduh JSON: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Kesalahan jaringan"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Gagal mengunduh BSON: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Kesalahan jaringan"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Gagal memuat file BSON",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Silakan lepas file .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Cari...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Hapus pencarian",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Pengaturan Penampil BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Memuat pengaturan...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Saring file BSON secara otomatis",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Buka file BSON secara otomatis di penampil alih-alih mengunduhnya",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Batas Ukuran File (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "File yang lebih besar dari ini akan menampilkan peringatan",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Tema",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Level Perluasan Default",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Berapa banyak level yang akan diperluas secara default dalam tampilan pohon",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Simpan Pengaturan",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Tersimpan",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Batal",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Terjadi kesalahan",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Terjadi kesalahan yang tidak terduga",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Coba Lagi",
+    "description": "Button label to try again"
+  }
+}

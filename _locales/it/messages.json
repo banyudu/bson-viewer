@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "Visualizzatore BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Visualizza file BSON al volo",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "Scarica JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "Scarica BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "Carica BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "Tema:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "Chiaro",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "Scuro",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "Alto Contrasto",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub Scuro",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized Scuro",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "Seleziona file BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "Le estensioni Chrome non possono accedere direttamente ai file locali. Seleziona il file da visualizzare:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "Trascina e rilascia un file BSON ovunque su questa pagina, o fai clic sul pulsante qui sotto per selezionare un file.",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "Scegli file",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "Caricamento file BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "Errore nel caricamento BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "Riprova",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "Nessun dato da visualizzare",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "Download JSON fallito: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Errore di rete"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "Download BSON fallito: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "Errore di rete"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "Caricamento file BSON fallito",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "Rilascia un file .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "Cerca...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "Cancella ricerca",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "Impostazioni Visualizzatore BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "Caricamento impostazioni...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "Intercetta automaticamente i file BSON",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "Apri automaticamente i file BSON nel visualizzatore invece di scaricarli",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "Limite dimensione file (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "I file più grandi di questo mostreranno un avviso",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "Tema",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "Livello di espansione predefinito",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "Quanti livelli espandere per impostazione predefinita nella vista ad albero",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "Salva impostazioni",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ Salvato",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "Annulla",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "Qualcosa è andato storto",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "Si è verificato un errore imprevisto",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "Riprova",
+    "description": "Button label to try again"
+  }
+}

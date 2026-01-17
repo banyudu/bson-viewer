@@ -1,0 +1,178 @@
+{
+  "extensionName": {
+    "message": "ตัวดู BSON",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "ดูไฟล์ BSON ทันที",
+    "description": "Extension description"
+  },
+  "downloadJSON": {
+    "message": "ดาวน์โหลด JSON",
+    "description": "Button label to download JSON"
+  },
+  "downloadBSON": {
+    "message": "ดาวน์โหลด BSON",
+    "description": "Button label to download BSON"
+  },
+  "uploadBSON": {
+    "message": "อัปโหลด BSON",
+    "description": "Button label to upload BSON"
+  },
+  "theme": {
+    "message": "ธีม:",
+    "description": "Theme label"
+  },
+  "themeLight": {
+    "message": "สว่าง",
+    "description": "Light theme option"
+  },
+  "themeDark": {
+    "message": "มืด",
+    "description": "Dark theme option"
+  },
+  "themeHighContrast": {
+    "message": "ความคมชัดสูง",
+    "description": "High contrast theme option"
+  },
+  "themeGitHubDark": {
+    "message": "GitHub มืด",
+    "description": "GitHub Dark theme option"
+  },
+  "themeMonokai": {
+    "message": "Monokai",
+    "description": "Monokai theme option"
+  },
+  "themeSolarizedDark": {
+    "message": "Solarized มืด",
+    "description": "Solarized Dark theme option"
+  },
+  "selectBSONFile": {
+    "message": "เลือกไฟล์ BSON",
+    "description": "Heading for file selection screen"
+  },
+  "chromeExtensionsCannotAccessLocalFiles": {
+    "message": "ส่วนขยาย Chrome ไม่สามารถเข้าถึงไฟล์ท้องถิ่นได้โดยตรง กรุณาเลือกไฟล์เพื่อดู:",
+    "description": "Message explaining file access limitation"
+  },
+  "dragAndDropBSONFile": {
+    "message": "ลากและวางไฟล์ BSON ไปที่ใดก็ได้บนหน้านี้ หรือคลิกปุ่มด้านล่างเพื่อเลือกไฟล์",
+    "description": "Instructions for file selection"
+  },
+  "chooseFile": {
+    "message": "เลือกไฟล์",
+    "description": "Button label to choose file"
+  },
+  "loadingBSONFile": {
+    "message": "กำลังโหลดไฟล์ BSON...",
+    "description": "Loading message"
+  },
+  "errorLoadingBSON": {
+    "message": "ข้อผิดพลาดในการโหลด BSON",
+    "description": "Error heading"
+  },
+  "retry": {
+    "message": "ลองอีกครั้ง",
+    "description": "Retry button label"
+  },
+  "noDataToDisplay": {
+    "message": "ไม่มีข้อมูลที่จะแสดง",
+    "description": "Message when no data is available"
+  },
+  "failedToDownloadJSON": {
+    "message": "ดาวน์โหลด JSON ล้มเหลว: $MESSAGE$",
+    "description": "Error message for JSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "ข้อผิดพลาดเครือข่าย"
+      }
+    }
+  },
+  "failedToDownloadBSON": {
+    "message": "ดาวน์โหลด BSON ล้มเหลว: $MESSAGE$",
+    "description": "Error message for BSON download failure",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "ข้อผิดพลาดเครือข่าย"
+      }
+    }
+  },
+  "failedToLoadBSONFile": {
+    "message": "โหลดไฟล์ BSON ล้มเหลว",
+    "description": "Generic error message for BSON loading failure"
+  },
+  "pleaseDropBSONFile": {
+    "message": "กรุณาวางไฟล์ .bson",
+    "description": "Error message when wrong file type is dropped"
+  },
+  "search": {
+    "message": "ค้นหา...",
+    "description": "Search input placeholder"
+  },
+  "clearSearch": {
+    "message": "ล้างการค้นหา",
+    "description": "Aria label for clear search button"
+  },
+  "bsonViewerSettings": {
+    "message": "การตั้งค่าตัวดู BSON",
+    "description": "Settings page heading"
+  },
+  "loadingSettings": {
+    "message": "กำลังโหลดการตั้งค่า...",
+    "description": "Loading message for settings"
+  },
+  "autoInterceptBSONFiles": {
+    "message": "ดักจับไฟล์ BSON อัตโนมัติ",
+    "description": "Setting label for auto-intercept"
+  },
+  "autoInterceptBSONFilesDescription": {
+    "message": "เปิดไฟล์ BSON ในตัวดูโดยอัตโนมัติแทนการดาวน์โหลด",
+    "description": "Description for auto-intercept setting"
+  },
+  "fileSizeLimit": {
+    "message": "ขีดจำกัดขนาดไฟล์ (MB)",
+    "description": "Setting label for file size limit"
+  },
+  "fileSizeLimitDescription": {
+    "message": "ไฟล์ที่ใหญ่กว่านี้จะแสดงคำเตือน",
+    "description": "Description for file size limit setting"
+  },
+  "themeSetting": {
+    "message": "ธีม",
+    "description": "Setting label for theme"
+  },
+  "defaultExpandLevel": {
+    "message": "ระดับการขยายเริ่มต้น",
+    "description": "Setting label for default expand level"
+  },
+  "defaultExpandLevelDescription": {
+    "message": "จำนวนระดับที่จะขยายโดยค่าเริ่มต้นในมุมมองแบบต้นไม้",
+    "description": "Description for default expand level setting"
+  },
+  "saveSettings": {
+    "message": "บันทึกการตั้งค่า",
+    "description": "Button label to save settings"
+  },
+  "saved": {
+    "message": "✓ บันทึกแล้ว",
+    "description": "Message shown when settings are saved"
+  },
+  "cancel": {
+    "message": "ยกเลิก",
+    "description": "Cancel button label"
+  },
+  "somethingWentWrong": {
+    "message": "เกิดข้อผิดพลาด",
+    "description": "Error boundary heading"
+  },
+  "unexpectedErrorOccurred": {
+    "message": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
+    "description": "Generic error message"
+  },
+  "tryAgain": {
+    "message": "ลองอีกครั้ง",
+    "description": "Button label to try again"
+  }
+}
