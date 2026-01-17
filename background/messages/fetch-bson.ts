@@ -1,7 +1,9 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
+import { normalizeUrl } from "~/utils/url-helpers"
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
-  const { url } = req.body
+  const { url: rawUrl } = req.body
+  const url = rawUrl ? normalizeUrl(rawUrl) : ""
 
   if (!url) {
     res.send({ error: "URL is required" })

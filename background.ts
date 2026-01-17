@@ -1,4 +1,5 @@
 import { setPendingBSONUrl } from "~/utils/storage"
+import { normalizeUrl } from "~/utils/url-helpers"
 
 /**
  * Check if a URL should bypass the BSON viewer (has bypass_bson_viewer=true parameter)
@@ -71,7 +72,7 @@ function isBSONUrl(url: string): boolean {
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId === 0 && details.url) {
     // Main frame navigation only
-    const url = details.url
+    const url = normalizeUrl(details.url)
     
     // Skip viewer pages, blob/data URLs, and extension URLs
     if (isViewerPage(url) || isBlobOrDataUrl(url) || isExtensionUrl(url)) {
@@ -93,7 +94,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
 // Handle navigation to BSON files - this is the primary interception method
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "loading" && tab.url) {
-    const url = tab.url
+    const url = normalizeUrl(tab.url)
     
     // Skip viewer pages, blob/data URLs, and extension URLs
     if (isViewerPage(url) || isBlobOrDataUrl(url) || isExtensionUrl(url)) {
@@ -121,7 +122,7 @@ chrome.downloads.onCreated.addListener((downloadItem) => {
     return
   }
 
-  const url = downloadItem.url || ""
+  const url = normalizeUrl(downloadItem.url || "")
   const filename = downloadItem.filename || ""
 
   // Skip viewer pages, blob/data URLs, and extension URLs

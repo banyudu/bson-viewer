@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { sendToBackground } from "@plasmohq/messaging"
 import { parseBSON } from "~/utils/bson-helpers"
 import { getCachedBSONData, cacheBSONData, getPendingBSONUrl, getTheme, saveTheme } from "~/utils/storage"
+import { normalizeUrl } from "~/utils/url-helpers"
 import { ErrorBoundary } from "~/components/ErrorBoundary"
 import { MonacoBSONViewer } from "~/components/MonacoBSONViewer"
 import { Toolbar, type Theme } from "~/components/Toolbar"
@@ -138,13 +139,16 @@ function BSONViewer() {
         // Get URL from query parameters (set by background script or persisted from previous load)
         const params = new URLSearchParams(window.location.search)
         let url = params.get("url")
+        if (url) {
+          url = normalizeUrl(url)
+        }
 
         // If no URL in query params, try to get from extension storage (declarativeNetRequest redirect)
         if (!url) {
           // Try to get the pending URL from storage
           const pendingUrl = await getPendingBSONUrl()
           if (pendingUrl) {
-            url = pendingUrl
+            url = normalizeUrl(pendingUrl)
             // Immediately update URL in address bar to persist it
             const viewerUrl = new URL(window.location.href)
             viewerUrl.searchParams.set("url", url)
@@ -156,7 +160,7 @@ function BSONViewer() {
         if (!url) {
           const referrer = document.referrer
           if (referrer && isBSONUrl(referrer)) {
-            url = referrer // Keep full URL including query params
+            url = normalizeUrl(referrer) // Keep full URL including query params
             // Immediately update URL in address bar to persist it
             const viewerUrl = new URL(window.location.href)
             viewerUrl.searchParams.set("url", url)
@@ -168,7 +172,7 @@ function BSONViewer() {
         if (!url) {
           const storedUrl = sessionStorage.getItem("bson_url")
           if (storedUrl) {
-            url = storedUrl
+            url = normalizeUrl(storedUrl)
             sessionStorage.removeItem("bson_url")
             // Immediately update URL in address bar to persist it
             const viewerUrl = new URL(window.location.href)
