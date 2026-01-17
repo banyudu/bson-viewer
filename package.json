@@ -9,7 +9,7 @@
     "dev": "plasmo dev",
     "build": "npm run clean && plasmo build && node scripts/cleanup-monaco.js",
     "build:no-cleanup": "plasmo build",
-    "package": "plasmo package && VERSION=$(node -p \"require('./package.json').version\") && ZIPFILE=$(find . -name '*.zip' -path '*/build/*' -type f | head -1) && if [ -n \"$ZIPFILE\" ]; then mv \"$ZIPFILE\" \"bson-viewer-${VERSION}.zip\" && echo \"Created bson-viewer-${VERSION}.zip\"; else echo 'No zip file found in build directory'; fi"
+    "package": "plasmo package && VERSION=$(node -p \"require('./package.json').version\") && ZIPFILE=$(find . -name '*.zip' -path '*/build/*' -type f | head -1) && if [ -n \"$ZIPFILE\" ]; then mv \"$ZIPFILE\" \"build/bson-viewer-${VERSION}.zip\" && echo \"Created bson-viewer-${VERSION}.zip\"; else echo 'No zip file found in build directory'; fi"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
