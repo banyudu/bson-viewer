@@ -15,7 +15,12 @@ export function getMessage(
 ): string {
   try {
     if (typeof chrome !== "undefined" && chrome.i18n) {
-      return chrome.i18n.getMessage(messageName, substitutions)
+      // Pass substitutions only if there are any, otherwise pass undefined
+      const subs = substitutions.length > 0 ? substitutions : undefined
+      const result = chrome.i18n.getMessage(messageName, subs)
+      // If chrome.i18n.getMessage returns empty string, fall back to messageName
+      // This happens when the message key doesn't exist
+      return result || messageName
     }
     // Fallback for development/testing when chrome.i18n is not available
     return messageName
