@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSON Viewer - Chrome Extension</title>
+    <meta name="description" content="A Chrome extension for viewing BSON files with a beautiful, interactive interface. Automatic interception, syntax highlighting, and Monaco Editor support.">
+    <meta name="keywords" content="BSON, MongoDB, Chrome Extension, BSON Viewer, JSON, Database, Developer Tools">
     <style>
         * {
             margin: 0;
@@ -11,80 +13,177 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1f2937;
+            background: #f9fafb;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
         }
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 60px 40px;
+            min-height: 100vh;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
         h1 {
-            color: #2563eb;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            color: #111827;
+            margin-bottom: 12px;
+            font-size: 2.75em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
         .subtitle {
-            color: #666;
+            color: #6b7280;
+            font-size: 1.25em;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        .cover-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.2s ease;
+            margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+            position: relative;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+        }
+        .cta-button::before {
+            content: "⬇";
             font-size: 1.2em;
-            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .cta-container {
+            text-align: center;
+            margin: 40px 0;
         }
         .nav {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #e5e7eb;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
         }
         .nav a {
             display: inline-block;
-            margin-right: 20px;
-            padding: 12px 24px;
-            background-color: #2563eb;
-            color: white;
+            margin: 8px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #4b5563;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
+            border: 1px solid #e5e7eb;
         }
         .nav a:hover {
-            background-color: #1e40af;
+            background-color: #f9fafb;
+            color: #111827;
+            border-color: #d1d5db;
         }
         .features {
-            margin-top: 30px;
+            margin-top: 50px;
         }
         .features h2 {
-            color: #1e40af;
-            margin-bottom: 20px;
+            color: #111827;
+            margin-bottom: 24px;
+            font-size: 1.75em;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
         .features ul {
             list-style: none;
             margin-left: 0;
         }
         .features li {
-            padding: 10px 0;
-            padding-left: 30px;
+            padding: 14px 0;
+            padding-left: 32px;
             position: relative;
+            color: #374151;
         }
         .features li:before {
             content: "✓";
             position: absolute;
             left: 0;
-            color: #10b981;
-            font-weight: bold;
-            font-size: 1.2em;
+            color: #059669;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .how-it-works {
+            margin-top: 50px;
+            background-color: #f9fafb;
+            padding: 32px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        .how-it-works h2 {
+            color: #111827;
+            margin-bottom: 20px;
+            font-size: 1.75em;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .how-it-works ol {
+            margin-left: 24px;
+            color: #374151;
+        }
+        .how-it-works li {
+            margin-bottom: 14px;
+            padding-left: 8px;
+            line-height: 1.6;
+        }
+        .how-it-works code {
+            background-color: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #111827;
+            border: 1px solid #e5e7eb;
         }
         footer {
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 60px;
+            padding-top: 30px;
             border-top: 1px solid #e5e7eb;
-            color: #666;
+            color: #6b7280;
             text-align: center;
+            font-size: 0.95em;
+        }
+        footer p {
+            margin-bottom: 8px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 24px;
+            }
+            h1 {
+                font-size: 2.25em;
+            }
+            .subtitle {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
@@ -93,26 +192,50 @@
         <h1>BSON Viewer</h1>
         <p class="subtitle">A Chrome extension for viewing BSON files with a beautiful, interactive interface</p>
 
+        <img src="cover.png" alt="BSON Viewer Screenshot" class="cover-image">
+
+        <div class="cta-container">
+            <a href="https://chromewebstore.google.com/detail/bson-viewer/ekobnmjnjfjmfnkimicdmbbbnmijdkjb" class="cta-button" target="_blank" rel="noopener">
+                Install from Chrome Web Store
+            </a>
+        </div>
+
         <div class="features">
             <h2>Features</h2>
             <ul>
-                <li>Automatic interception of BSON file requests</li>
-                <li>Pretty-printed display with syntax highlighting</li>
-                <li>Interactive tree view with expand/collapse</li>
-                <li>Search functionality</li>
-                <li>Copy and download options</li>
-                <li>Dark mode support</li>
-                <li>Fast and efficient parsing</li>
+                <li><strong>Automatic interception</strong> of BSON file requests - no manual uploads needed</li>
+                <li><strong>Monaco Editor integration</strong> - the same editor powering VS Code</li>
+                <li><strong>Multiple themes</strong> - VS Dark, GitHub Dark, Monokai, Solarized Dark, and more</li>
+                <li><strong>Search functionality</strong> - quickly find keys and values in your BSON data</li>
+                <li><strong>Copy and download</strong> - export to JSON format with one click</li>
+                <li><strong>File upload support</strong> - drag & drop or browse local BSON files</li>
+                <li><strong>Smart caching</strong> - faster loading for frequently accessed files</li>
+                <li><strong>Privacy-focused</strong> - all processing happens locally, no data sent to servers</li>
             </ul>
         </div>
 
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            <ol>
+                <li>Install the extension from the Chrome Web Store</li>
+                <li>Navigate to any <code>.bson</code> file URL in your browser</li>
+                <li>The extension automatically intercepts and displays the file in a beautiful viewer</li>
+                <li>Use the toolbar to copy JSON, download, change themes, or upload new files</li>
+            </ol>
+            <p style="margin-top: 24px; color: #6b7280; font-size: 0.95em;">
+                <strong>Note:</strong> You can also manually upload local BSON files using drag & drop or the file picker.
+            </p>
+        </div>
+
         <div class="nav">
+            <a href="https://chromewebstore.google.com/detail/bson-viewer/ekobnmjnjfjmfnkimicdmbbbnmijdkjb" target="_blank" rel="noopener">Chrome Web Store</a>
+            <a href="https://github.com/banyudu/bson-viewer" target="_blank" rel="noopener">GitHub Repository</a>
             <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="https://github.com/banyudu/bson-viewer">GitHub Repository</a>
         </div>
 
         <footer>
             <p>&copy; 2025 BSON Viewer. All rights reserved.</p>
+            <p style="margin-top: 12px; font-size: 0.9em; color: #9ca3af;">Made with ❤️ for MongoDB developers</p>
         </footer>
     </div>
 </body>
